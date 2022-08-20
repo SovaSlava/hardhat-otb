@@ -1,6 +1,6 @@
 import { HardhatUserConfig ,task} from "hardhat/config";
 import { readFileSync } from 'fs';
-task("otb", "Opcoses to bytecode")
+task("otb", "Opcodes to bytecode")
 .addParam("file", "path to file with opcodes")
 .setAction(async (taskArgs) => { 
     

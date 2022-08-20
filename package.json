@@ -1,6 +1,6 @@
 {
   "name": "hardhat-otb",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "src/index.js",
   "scripts": {
@@ -17,9 +17,6 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/SlavikDMI/hardhat-otb/issues"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/slavikdmils "
   },
   "homepage": "https://github.com/SlavikDMI/Create3#readme",
   "devDependencies": {

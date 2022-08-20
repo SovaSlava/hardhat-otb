@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var config_1 = require("hardhat/config");
 var fs_1 = require("fs");
-(0, config_1.task)("otb", "Opcoses to bytecode")
+(0, config_1.task)("otb", "Opcodes to bytecode")
     .addParam("file", "path to file with opcodes")
     .setAction(function (taskArgs) { return __awaiter(void 0, void 0, void 0, function () {
     function getOpcode(x) {
