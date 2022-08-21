@@ -5,7 +5,7 @@
 ### Installation
 **Step 1:** Install the package
 
-`npm i hardhat-otb`
+`npm i @sovaslava/hardhat-otb`
 
 **Step 2:**  Add to your hardhat.config.ts file
 

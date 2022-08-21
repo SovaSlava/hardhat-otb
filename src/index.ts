@@ -173,7 +173,6 @@ task("otb", "Opcodes to bytecode")
   
       if (hex.length < 2) {
         hex = "0" + hex;
-        console.log('z')
       } 
   
       res += hex;

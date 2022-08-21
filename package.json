@@ -1,14 +1,14 @@
 {
-  "name": "hardhat-otb",
-  "version": "1.0.1",
-  "description": "",
+  "name": "@sovaslava/hardhat-otb",
+  "version": "1.0.0",
+  "description": "Hardhat plugin for translate opcodes to bytecode",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SlavikDMI/hardhat-otb.git"
+    "url": "git+https://github.com/SovaSlava/hardhat-otb.git"
   },
   "keywords": [
     "yul"
@@ -16,9 +16,12 @@
   "author": "Viacheslav Dmitriev",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SlavikDMI/hardhat-otb/issues"
+    "url": "https://github.com/SovaSlava/hardhat-otb/issues"
   },
-  "homepage": "https://github.com/SlavikDMI/Create3#readme",
+  "publishConfig": {
+  "registry": "https://npm.pkg.github.com/SovaSlava"
+  },
+  "homepage": "https://github.com/SovaSlava/hardhat-otb#readme",
   "devDependencies": {
     "hardhat": "^2.0.0",
     "typescript": "^4.0.3",
