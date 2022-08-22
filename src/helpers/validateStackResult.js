@@ -150,21 +150,24 @@ function validateStackResult(currentStack, stackInput, stackResult, value) {
             currentStack[currentStack.length - 1] = swapElement;
             return currentStack;
         case "created address":
-            for (var i = 0; i < stackInput; i++) {
+            while (stackInput > 0) {
                 currentStack.pop();
+                stackInput--;
             }
             currentStack.push(stackResult);
             return currentStack;
         case "CALL-result":
-            for (var i = 0; i < stackInput; i++) {
+            while (stackInput > 0) {
                 currentStack.pop();
+                stackInput--;
             }
             currentStack.push(stackResult);
             return currentStack;
         case "":
             if (stackInput) {
-                for (var i = 0; i < stackInput; i++) {
+                while (stackInput > 0) {
                     currentStack.pop();
+                    stackInput--;
                 }
                 return currentStack;
             }

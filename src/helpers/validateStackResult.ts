@@ -199,23 +199,26 @@ export function validateStackResult(
       return currentStack;
 
     case "created address":
-      for (let i = 0; i < stackInput; i++) {
+      while (stackInput > 0) {
         currentStack.pop();
+        stackInput--;
       }
       currentStack.push(stackResult);
       return currentStack;
 
     case "CALL-result":
-      for (let i = 0; i < stackInput; i++) {
+      while (stackInput > 0) {
         currentStack.pop();
+        stackInput--;
       }
       currentStack.push(stackResult);
       return currentStack;
 
     case "":
       if (stackInput) {
-        for (let i = 0; i < stackInput; i++) {
+        while (stackInput > 0) {
           currentStack.pop();
+          stackInput--;
         }
         return currentStack;
       } else {

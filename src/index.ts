@@ -51,7 +51,7 @@ task("otb", "Opcodes to bytecode")
       }
 
       if (taskArgs.stack) {
-        stackRow += arr[i].toUpperCase() + " ";
+        stackRow += arr[i].toUpperCase();
       }
 
       if (hex.length < 2) {
@@ -74,12 +74,24 @@ task("otb", "Opcodes to bytecode")
       if (taskArgs.stack && stackFileName) {
         if (value) {
           let val: string = value;
-          if (value.length > 16) {
-            val = cut(value, 6, value.length - 9);
+          if (value.length > 12) {
+            val = cut(value, 4, value.length - 6);
           }
-          stackRow += "0x" + val + "\t|\t";
+          stackRow += " 0x" + val;
+
+          if (stackRow.length < 23) {
+            while (stackRow.length != 22) {
+              stackRow += " ";
+            }
+          }
+          stackRow += "| ";
         } else {
-          stackRow += "\t|\t";
+          if (stackRow.length < 23) {
+            while (stackRow.length != 22) {
+              stackRow += " ";
+            }
+          }
+          stackRow += "| ";
         }
 
         stack = validateStackResult(
@@ -90,7 +102,7 @@ task("otb", "Opcodes to bytecode")
         );
 
         for (let j = stack.length - 1; j >= 0; j--) {
-          stackRow += stack[j] + " ";
+          stackRow += "[ " + stack[j] + " ]";
         }
 
         appendFileSync(stackFileName, stackRow + "\n");
