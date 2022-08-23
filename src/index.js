@@ -52,14 +52,18 @@ function getOpcode(x) {
         };
     return { hex: "0x100", num: 0 };
 }
+function cut(str, cutStart, cutEnd) {
+    return str.substring(0, cutStart) + "..." + str.substring(cutEnd + 1);
+}
 (0, config_1.task)("otb", "Opcodes to bytecode")
-    .addParam("file", "path to file with opcodes")
-    .addOptionalParam("stack", "write stack into other file")
+    .addParam("file", "file with opcodes")
+    .addOptionalParam("stack", "write stack into other file. Use: --stack true")
     .setAction(function (taskArgs) { return __awaiter(void 0, void 0, void 0, function () {
     var file, arr, stackFileName, stack, res, i, stackRow, _a, hex, num, stackInput, stackResult, value, difference, j, val, j;
     return __generator(this, function (_b) {
         file = (0, fs_1.readFileSync)(taskArgs.file, "utf-8");
         arr = file.replace(/\r\n|\n|\r/gm, " ").split(" ");
+        stackFileName = "";
         stack = [];
         if (taskArgs.stack) {
             stackFileName = "otb-".concat((0, uuid_1.v4)().slice(0, 7), ".txt");
@@ -120,10 +124,8 @@ function getOpcode(x) {
                 (0, fs_1.appendFileSync)(stackFileName, stackRow + "\n");
             }
         }
-        console.log(res);
+        console.log("Bytecode - ".concat(res));
+        console.log("Opcodes with stack saved to ".concat(stackFileName));
         return [2 /*return*/];
     });
 }); });
-function cut(str, cutStart, cutEnd) {
-    return str.substring(0, cutStart) + "..." + str.substring(cutEnd + 1);
-}

@@ -1,4 +1,4 @@
-import { task } from "hardhat/config";
+import { task, HardhatUserConfig } from "hardhat/config";
 import { readFileSync, appendFileSync } from "fs";
 import { v4 } from "uuid";
 
@@ -8,7 +8,6 @@ import { validateStackResult } from "./helpers/validateStackResult";
 function getOpcode(x: string) {
   const item: [string, number, number, number, string] | undefined =
     opcodes.find((element) => element[0] === x);
-
   if (item !== undefined)
     return {
       hex: item[1].toString(16),
@@ -20,14 +19,18 @@ function getOpcode(x: string) {
   return { hex: "0x100", num: 0 };
 }
 
+function cut(str: string, cutStart: number, cutEnd: number) {
+  return str.substring(0, cutStart) + "..." + str.substring(cutEnd + 1);
+}
+
 task("otb", "Opcodes to bytecode")
-  .addParam("file", "path to file with opcodes")
-  .addOptionalParam("stack", "write stack into other file")
+  .addParam("file", "file with opcodes")
+  .addOptionalParam("stack", "write stack into other file. Use: --stack true")
   .setAction(async (taskArgs) => {
     const file: string = readFileSync(taskArgs.file, "utf-8");
     const arr: string[] = file.replace(/\r\n|\n|\r/gm, " ").split(" ");
 
-    let stackFileName;
+    let stackFileName: string = "";
     let stack: string[] = [];
     if (taskArgs.stack) {
       stackFileName = `otb-${v4().slice(0, 7)}.txt`;
@@ -49,11 +52,9 @@ task("otb", "Opcodes to bytecode")
       if (hex === "0x100") {
         console.log(`The opcode ${arr[i].toUpperCase()} does not exist`);
       }
-
       if (taskArgs.stack) {
         stackRow += arr[i].toUpperCase();
       }
-
       if (hex.length < 2) {
         hex = "0" + hex;
       }
@@ -109,9 +110,6 @@ task("otb", "Opcodes to bytecode")
       }
     }
 
-    console.log(res);
+    console.log(`Bytecode - ${res}`);
+    console.log(`Opcodes with stack saved to ${stackFileName}`);
   });
-
-function cut(str: string, cutStart: number, cutEnd: number) {
-  return str.substring(0, cutStart) + "..." + str.substring(cutEnd + 1);
-}
