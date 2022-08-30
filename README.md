@@ -1,6 +1,9 @@
-## Hardhat-OTB
-
 ### Hardhat plugin for translate opcodes to bytecode
+
+You can translate contract bytecode to opcodes and watch what is in the stack.
+
+![](./stackResult.jpg)
+
 
 ### Installation
 
